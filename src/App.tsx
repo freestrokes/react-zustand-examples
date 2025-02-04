@@ -4,13 +4,14 @@
 import './App.css'
 
 import {
-  // QueryClient,
+  QueryClient,
   // QueryClientProvider,
-  useQuery, useMutation, useQueryClient
+  useQuery, useMutation,
+  useQueryClient
 } from "@tanstack/react-query";
 import useStore from "./store";
 
-// const queryClient = new QueryClient();
+const queryClient = new QueryClient();
 
 // API 함수
 const fetchTodos = async () => {
