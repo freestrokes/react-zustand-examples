@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
+import '@/App.css'
 
 import {
   QueryClient,
@@ -9,7 +9,7 @@ import {
   useQuery, useMutation,
   useQueryClient
 } from "@tanstack/react-query";
-import useStore from "./store";
+import useStore from "@/store";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +37,6 @@ const deleteTodo = async (id: any) => {
 
 function App() {
 
-  // @ts-ignore
   const { user, updateUser, modalOpen, toggleModal } = useStore();
   const queryClient = useQueryClient();
 
@@ -45,7 +44,6 @@ function App() {
   const { data: todos, isLoading, isError } = useQuery({queryKey: ["todos"], queryFn: fetchTodos});
 
   // 할 일 추가
-  // @ts-ignore
   const mutationAddTodo = useMutation(addTodo, {
     onSuccess: (newTodo: any) => {
       queryClient.setQueryData(["todos"], (old :any) => [...old, newTodo]);
@@ -53,7 +51,6 @@ function App() {
   });
 
   // 할 일 삭제
-  // @ts-ignore
   const mutationDeleteTodo = useMutation(deleteTodo, {
     onSuccess: (id: any) => {
       queryClient.setQueryData(["todos"], (old: any) => old.filter((todo: any) => todo.id !== id));
