@@ -1,6 +1,6 @@
 import { User } from "@/types/User";
 
-interface UserState {
+export interface UserState {
 	user: User;
 	updateUser: (user: User) => void;
-};
+}
