@@ -1,8 +1,8 @@
 // store.js
 import { create } from "zustand";
-import { User } from "./types/User";
+import { User } from "@/types/User";
 
-const useStore = create((set, get) => ({
+const useStore = create((set) => ({
 	// 사용자 정보
 	user: {
 		name: "John Doe",
