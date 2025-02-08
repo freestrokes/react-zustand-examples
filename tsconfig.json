@@ -4,11 +4,7 @@
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-  "allowSyntheticDefaultImports": true,
   "compilerOptions": {
-    "paths" : {
-      "@/*" : ["src/*"]
-    },
     "target": "esnext",
     "lib": [
       "dom",
@@ -28,8 +24,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "allowImportingTsExtensions": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
     "src"
