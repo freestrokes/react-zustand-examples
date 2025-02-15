@@ -1,18 +1,17 @@
 import { AxiosError } from 'axios';
 import {
+  QueryClient,
 	useMutation,
 	UseMutationOptions,
 	UseMutationResult,
-} from 'react-query';
+} from '@tanstack/react-query';
 
-export default function useQueryMutator<TData = any>(
-	mutationKey,
-	mutationFn,
-	options?: UseMutationOptions<TData, AxiosError, TData>
-): UseMutationResult<TData, AxiosError, TData> {
+export default function useQueryMutator<TData = any, TVariables = any, TContext = any>(
+	options: UseMutationOptions<TData, AxiosError, TVariables, TContext>,
+	queryClient?: QueryClient,
+): UseMutationResult<TData, AxiosError, TVariables, TContext> {
 	return useMutation(
-		mutationKey,
-		mutationFn,
-		options
+		options,
+		queryClient
 	);
 };

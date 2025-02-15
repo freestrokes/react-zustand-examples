@@ -1,5 +1,11 @@
-import { AxiosError } from 'axios';
-import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
+import {
+	useQuery,
+	UseQueryResult,
+	QueryClient,
+	DefinedInitialDataOptions,
+	UndefinedInitialDataOptions,
+	UseQueryOptions,
+} from '@tanstack/react-query';
 
 // useQuery Generics
 // ex)
@@ -11,14 +17,12 @@ import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
 // TData: 데이터 프로퍼티가 갖게 될 타입. (기본값은 queryFn이 반환하는 타입)
 // TQueryKey: queryKey 타입.
 
-export default function useQueryFetcher<TData = any>(
-	queryKey,
-	queryFn,
-	options?: UseQueryOptions<TData, AxiosError, TData>
-): UseQueryResult<TData, AxiosError> {
+export default function useQueryFetcher(
+	options: DefinedInitialDataOptions | UndefinedInitialDataOptions | UseQueryOptions,
+	queryClient?: QueryClient,
+): UseQueryResult {
 	return useQuery(
-		queryKey,
-		queryFn,
-		options
+		options,
+		queryClient
 	);
 };
