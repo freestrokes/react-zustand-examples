@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.65.1",
+    "@types/node": "^22.13.4",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "axios": "^1.7.9",
-    "http-proxy-middleware": "^3.0.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "vite-tsconfig-paths": "^5.1.4",
