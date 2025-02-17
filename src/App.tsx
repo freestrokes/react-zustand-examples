@@ -4,12 +4,11 @@
 import '@/App.css'
 import useTestStore from '@/stores/useTestStore';
 
-// import {
-//   QueryClient,
-//   // QueryClientProvider,
-//   useQuery, useMutation,
-//   useQueryClient
-// } from "@tanstack/react-query";
+import {
+  useQuery
+} from "@tanstack/react-query";
+import {useEffect, useState} from 'react';
+import {PostService} from '@/services/PostService.ts';
 // import useStore from "@/store";
 
 // const queryClient = new QueryClient();
@@ -40,6 +39,31 @@ function App() {
 
   const bears = useTestStore((testState: any) => testState.bears)
   const increasePopulation = useTestStore((testState: any) => testState.increasePopulation)
+
+  const [
+    postsParam,
+    // setPostsParam
+  ] = useState<any>({} as any);
+
+  const {
+    data,
+    // error,
+    // isLoading
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => PostService.getPosts(postsParam),
+    // enabled: false,
+  });
+
+  useEffect(() => {
+    console.log("fetching data > ", data);
+    // if (postsParam && Object.keys(postsParam).length) {
+    //   console.log("fetching data > ", data);
+    // }
+  }, [data]);
+
+  // if (isLoading) return <p>Loading...</p>;
+  // if (error) return <p>Error loading posts</p>;
 
   return (
     <div>
