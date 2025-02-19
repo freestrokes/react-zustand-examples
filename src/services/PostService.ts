@@ -3,7 +3,7 @@ import { Result } from '@/types/Common';
 // import {axiosInstance} from './BoardService.ts';
 import axios, {AxiosInstance} from 'axios';
 
-const API_URL = '/posts';
+const API_URL = '/api/posts';
 
 export const axiosInstance: AxiosInstance = axios.create({
 	baseURL: '',
@@ -40,6 +40,7 @@ export const PostService = {
 		// response > headers > x-total-count 값을 사용.
 		const {data, headers} = await axiosInstance.get<Result<any>>(
 			`${API_URL}?q=${param.keyword}&_start=${(param.page-1) * param.size}&_limit=${param.size}`,
+			// `${API_URL}?q=&_start=0&_limit=5`,
 			{}
 		);
 
