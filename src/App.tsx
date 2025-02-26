@@ -5,35 +5,13 @@ import '@/App.css'
 import useTestStore from '@/stores/useTestStore';
 
 import {
-  useQuery
+  useQuery, UseQueryResult
 } from "@tanstack/react-query";
 import {useEffect, useState} from 'react';
 import {PostService} from '@/services/PostService.ts';
 // import useStore from "@/store";
 
 // const queryClient = new QueryClient();
-//
-// // API 함수
-// const fetchTodos = async () => {
-//   const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=5");
-//   return response.json();
-// };
-//
-// const addTodo = async (newTodo: any) => {
-//   const response = await fetch("https://jsonplaceholder.typicode.com/todos", {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(newTodo),
-//   });
-//   return response.json();
-// };
-//
-// const deleteTodo = async (id: any) => {
-//   await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
-//     method: "DELETE",
-//   });
-//   return id;
-// };
 
 function App() {
 
@@ -49,14 +27,15 @@ function App() {
     data,
     // error,
     // isLoading
-  } = useQuery({
+  }: UseQueryResult = useQuery({
     queryKey: ["posts"],
     queryFn: () => PostService.getPosts(postsParam),
-    // enabled: false,
+    select: (res) => res.data,
+    // enabled: enabled ?? false,
   });
 
   useEffect(() => {
-    console.log("fetching data > ", data);
+    console.log("fetching data >>> ", data);
     // if (postsParam && Object.keys(postsParam).length) {
     //   console.log("fetching data > ", data);
     // }
