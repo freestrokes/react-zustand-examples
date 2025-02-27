@@ -48,7 +48,7 @@ function App() {
     <div>
       <h1>{bears} around here...</h1>
       <br></br>
-      <button onClick={increasePopulation}>one up</button>
+      <button onClick={() => increasePopulation()}>one up</button>
     </div>
   )
 
