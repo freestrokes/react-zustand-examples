@@ -1,6 +1,8 @@
 import { create } from 'zustand'
+import { ExtractState, StoreApi } from 'zustand/index';
+import { TestState } from '@/states/TestState';
 
-const useTestStore = create((set) => ({
+const useTestStore = create<TestState>((set) => ({
 	bears: 0,
 	increasePopulation: () =>
 		set((testState: any) => ({
@@ -10,10 +12,13 @@ const useTestStore = create((set) => ({
 		set({
 			bears: 0
 		}),
-	updateBears: (newBears: any) =>
+	updateBears: (newBears: number) =>
 		set({
 			bears: newBears
 		}),
 }))
 
-export default useTestStore;
+export const getTestState = () => useTestStore.getState;
+export const useIncreasePopulation = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.increasePopulation);
+export const useRemoveAllBears = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.removeAllBears);
+export const useUpdateBears = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.updateBears);
