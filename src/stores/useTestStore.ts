@@ -19,6 +19,7 @@ const useTestStore = create<TestState>((set) => ({
 }))
 
 export const getTestState = () => useTestStore.getState;
-export const useIncreasePopulation = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.increasePopulation);
-export const useRemoveAllBears = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.removeAllBears);
-export const useUpdateBears = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.updateBears);
+export const useTestState = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.bears);
+export const useTestIncreasePopulation = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.increasePopulation);
+export const useTestRemoveAllBears = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.removeAllBears);
+export const useTestUpdateBears = () => useTestStore((store: ExtractState<StoreApi<TestState>>) => store.updateBears);
