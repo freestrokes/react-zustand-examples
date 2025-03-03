@@ -2,26 +2,43 @@
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import '@/App.css'
-import useTestStore from '@/stores/useTestStore';
-
 import {
-  useQuery, UseQueryResult
-} from "@tanstack/react-query";
-import {useEffect, useState} from 'react';
-import {PostService} from '@/services/PostService.ts';
+  // getTestState,
+  useTestState,
+  useTestIncreasePopulation,
+  useTestRemoveAllBears,
+  useTestUpdateBears
+} from '@/stores/useTestStore';
+
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import { PostService } from '@/services/PostService.ts';
+import { useImmer } from 'use-immer';
 // import useStore from "@/store";
 
 // const queryClient = new QueryClient();
 
 function App() {
 
-  const bears = useTestStore((testState: any) => testState.bears)
-  const increasePopulation = useTestStore((testState: any) => testState.increasePopulation)
+  /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  | States & Variables
+  |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+  // hook 으로 export 되었기 때문에 변수에 할당해서 사용.
+  const testState: number = useTestState();
+  const testIncreasePopulation = useTestIncreasePopulation();
+  const testRemoveAllBears = useTestRemoveAllBears();
+  const testUpdateBears = useTestUpdateBears();
 
   const [
     postsParam,
     // setPostsParam
   ] = useState<any>({} as any);
+  const [updateParam, setUpdateParam] = useImmer(0);
+
+  /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  | Queries
+  |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
   const {
     data,
@@ -34,6 +51,10 @@ function App() {
     // enabled: enabled ?? false,
   });
 
+  /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  | Hooks
+  |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
   useEffect(() => {
     console.log("fetching data >>> ", data);
     // if (postsParam && Object.keys(postsParam).length) {
@@ -41,14 +62,40 @@ function App() {
     // }
   }, [data]);
 
+  /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  | Functions
+  |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+  // const handleKeyDownInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  //   console.log(e.key);
+  //   setUpdateParam(parseInt(e.key));
+  // };
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setUpdateParam(parseInt(e.target.value));
+  };
+
+  const onClickUpdate = () => {
+    testUpdateBears(updateParam);
+  };
+
+  /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	| Mark Up
+	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
   // if (isLoading) return <p>Loading...</p>;
   // if (error) return <p>Error loading posts</p>;
 
   return (
     <div>
-      <h1>{bears} around here...</h1>
+      <h1>{testState} around here...</h1>
       <br></br>
-      <button onClick={() => increasePopulation()}>one up</button>
+      {/*<input type="number" onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDownInput(e)}></input>*/}
+      <input type="number" onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInput(e)}></input>
+      <button onClick={() => testIncreasePopulation()}>one up</button>
+      <button onClick={() => testRemoveAllBears()}>remove all</button>
+      <button onClick={() => onClickUpdate()}>update</button>
     </div>
   )
 
