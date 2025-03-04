@@ -47,7 +47,7 @@ function App() {
   }: UseQueryResult = useQuery({
     queryKey: ["posts"],
     queryFn: () => PostService.getPosts(postsParam),
-    select: (res) => res.data,
+    select: (result) => result.data,
     // enabled: enabled ?? false,
   });
 
