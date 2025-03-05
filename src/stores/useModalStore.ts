@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { ModalState } from "@/states/ModalState";
 
-const useModalStore = create<ModalState>((set) => ({
+const useModalStore = create<ModalState>()((set) => ({
 	modalOpen: false,
 	toggleModal: () =>
 		set((state: ModalState) => ({

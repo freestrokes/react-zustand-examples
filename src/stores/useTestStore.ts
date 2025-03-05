@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { ExtractState, StoreApi } from 'zustand/index';
 import { TestState } from '@/states/TestState';
 
-const useTestStore = create<TestState>((set) => ({
+const useTestStore = create<TestState>()((set) => ({
 	bears: 0,
 	increasePopulation: () =>
 		set((testState: any) => ({
