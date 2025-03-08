@@ -14,6 +14,17 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { PostService } from '@/services/PostService.ts';
 import { useImmer } from 'use-immer';
+import useCommonStore, {
+  // useCommonState,
+  // useCommonLangValue,
+  // useCommonSpinnerValue,
+  // useCommonTitleValue,
+  // useCommonAccessTokenValue,
+  // useCommonUpdateLang,
+  // useCommonUpdateSpinner,
+  // useCommonUpdateTitle,
+  // useCommonUpdateAccessToken
+} from '@/stores/useCommonStore';
 // import useStore from "@/store";
 
 // const queryClient = new QueryClient();
@@ -29,6 +40,26 @@ function App() {
   const testIncreasePopulation = useTestIncreasePopulation();
   const testRemoveAllBears = useTestRemoveAllBears();
   const testUpdateBears = useTestUpdateBears();
+
+  // zustand persist 확인을 위한 store 호출
+  // const lang: string = useCommonState().lang;
+  // const spinner: boolean = useCommonState().spinner;
+  // const title: string = useCommonState().title;
+  // const accessToken: string = useCommonState().accessToken;
+  // const updateLang = useCommonState().updateLang;
+  // const updateSpinner = useCommonState().updateSpinner;
+  // const updateTitle = useCommonState().updateTitle;
+  // const updateAccessToken = useCommonState().updateAccessToken;
+  const {
+    lang,
+    spinner,
+    title,
+    accessToken,
+    updateLang,
+    updateSpinner,
+    updateTitle,
+    updateAccessToken
+  } = useCommonStore();
 
   const [
     postsParam,
@@ -76,8 +107,26 @@ function App() {
     setUpdateParam(parseInt(e.target.value));
   };
 
-  const onClickUpdate = () => {
+  const onClickUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     testUpdateBears(updateParam);
+
+    console.log('====== Before State Changed ======');
+    console.log('App >>> onClickUpdate >>> lang', lang);
+    console.log('App >>> onClickUpdate >>> spinner', spinner);
+    console.log('App >>> onClickUpdate >>> title', title);
+    console.log('App >>> onClickUpdate >>> accessToken', accessToken);
+
+    updateLang('en');
+    updateSpinner(true);
+    updateTitle('Title changed.');
+    updateAccessToken('Access Token changed.');
+
+    console.log('====== After State Changed ======');
+    console.log('App >>> onClickUpdate >>> lang', lang);
+    console.log('App >>> onClickUpdate >>> spinner', spinner);
+    console.log('App >>> onClickUpdate >>> title', title);
+    console.log('App >>> onClickUpdate >>> accessToken', accessToken);
   };
 
   /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -95,7 +144,7 @@ function App() {
       <input type="number" onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInput(e)}></input>
       <button onClick={() => testIncreasePopulation()}>one up</button>
       <button onClick={() => testRemoveAllBears()}>remove all</button>
-      <button onClick={() => onClickUpdate()}>update</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickUpdate(e)}>update</button>
     </div>
   )
 
