@@ -12,26 +12,14 @@
 
 import {useQuery} from '@tanstack/react-query';
 import {PostService} from '@/services/PostService';
-
-const postQueryKeys = {
-	all: ['post'] as const,
-	findAll: () => [...postQueryKeys.all, 'findAll'] as const,
-	getOne: () => [...postQueryKeys.all, 'getOne'] as const,
-	create: () => [...postQueryKeys.all, 'create'] as const,
-	update: () => [...postQueryKeys.all, 'update'] as const,
-	delete: () => [...postQueryKeys.all, 'delete'] as const,
-	findAllWithParam: () => [...postQueryKeys.all, 'findAllWithParam'] as const,
-	getOneWithParam: () => [...postQueryKeys.all, 'getOneWithParam'] as const,
-	createWithParam: () => [...postQueryKeys.all, 'createWithParam'] as const,
-	// list: (filters: string) => [...postQueryKeys.lists(), { filters }] as const,
-	// detail: (id: number) => [...postQueryKeys.details(), id] as const,
-};
+import {postQueryKeys} from '@/queries/QueryKeys';
 
 export const useFetchPosts = (param: any) => useQuery({
 	queryKey: postQueryKeys.findAll(),
 	queryFn: () => PostService.getPosts(param),
+  select: (result) => result.data,
+  // enabled: enabled ?? false,
 });
-
 
 // export const PostQuery = {
 //
