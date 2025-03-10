@@ -3,17 +3,20 @@
 // import viteLogo from '/vite.svg'
 import '@/App.css'
 import {
+  // useQuery,
+  UseQueryResult
+} from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+// import { PostService } from '@/services/PostService.ts';
+import { useFetchPosts } from '@/queries/PostQuery';
+import { useImmer } from 'use-immer';
+import {
   // getTestState,
   useTestState,
   useTestIncreasePopulation,
   useTestRemoveAllBears,
   useTestUpdateBears
 } from '@/stores/useTestStore';
-
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
-import { PostService } from '@/services/PostService.ts';
-import { useImmer } from 'use-immer';
 import useCommonStore, {
   // useCommonState,
   // useCommonLangValue,
@@ -71,16 +74,18 @@ function App() {
   | Queries
   |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-  const {
-    data,
-    // error,
-    // isLoading
-  }: UseQueryResult = useQuery({
-    queryKey: ["posts"],
-    queryFn: () => PostService.getPosts(postsParam),
-    select: (result) => result.data,
-    // enabled: enabled ?? false,
-  });
+  const { data }: UseQueryResult = useFetchPosts(postsParam);
+
+  // const {
+  //   data,
+  //   // error,
+  //   // isLoading
+  // }: UseQueryResult = useQuery({
+  //   queryKey: ["posts"],
+  //   queryFn: () => PostService.getPosts(postsParam),
+  //   select: (result) => result.data,
+  //   // enabled: enabled ?? false,
+  // });
 
   /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   | Hooks
