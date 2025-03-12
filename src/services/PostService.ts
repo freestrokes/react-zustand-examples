@@ -53,7 +53,7 @@ export const PostService = {
 	 */
 	createPost: async (param: any) => {
 		const {data} = await axiosInstance.post<Result<any>>(
-			`${API_URL}/posts`,
+			`${API_URL}`,
 			param
 		);
 
