@@ -10,7 +10,7 @@
 // } from '@states/atom/BoardAtom';
 // import {boardListParamSelector} from '@states/selector/BoardSelector';
 
-import {useQuery} from '@tanstack/react-query';
+import {useMutation, useQuery} from '@tanstack/react-query';
 import {PostService} from '@/services/PostService';
 import {postQueryKeys} from '@/queries/QueryKeys';
 
@@ -19,6 +19,10 @@ export const useFetchPosts = (param: any) => useQuery({
 	queryFn: () => PostService.getPosts(param),
   select: (result) => result.data,
   // enabled: enabled ?? false,
+});
+
+export const useMutatePost = (param: any) => useMutation({
+	mutationFn: () => PostService.createPost(param),
 });
 
 // export const PostQuery = {
