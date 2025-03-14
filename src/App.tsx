@@ -3,12 +3,13 @@
 // import viteLogo from '/vite.svg'
 import '@/App.css'
 import {
+  UseMutationResult,
   // useQuery,
   UseQueryResult
 } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 // import { PostService } from '@/services/PostService.ts';
-import { useFetchPosts } from '@/queries/PostQuery';
+import { useFetchPosts, useMutatePost } from '@/queries/PostQuery';
 import { useImmer } from 'use-immer';
 import {
   // getTestState,
@@ -75,6 +76,16 @@ function App() {
   |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
   const { data }: UseQueryResult = useFetchPosts(postsParam);
+  const createPost: UseMutationResult = useMutatePost();
+
+  // const useSignup = (mutationOptions?: UseMutationCustomOptions) => {
+  //   return useMutation({
+  //     mutationFn: postSignup,
+  //     ...mutationOptions,
+  //   });
+  // };
+  //
+  // const signupMutation = useSignup();
 
   // const {
   //   data,
@@ -134,6 +145,11 @@ function App() {
     console.log('App >>> onClickUpdate >>> accessToken', accessToken);
   };
 
+  const onClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    createPost.mutate(postsParam);
+  };
+
   /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Mark Up
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -150,6 +166,7 @@ function App() {
       <button onClick={() => testIncreasePopulation()}>one up</button>
       <button onClick={() => testRemoveAllBears()}>remove all</button>
       <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickUpdate(e)}>update</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickCreate(e)}>Add Post</button>
     </div>
   )
 
