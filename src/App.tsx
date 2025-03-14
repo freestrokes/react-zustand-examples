@@ -109,6 +109,12 @@ function App() {
     // }
   }, [data]);
 
+  useEffect(() => {
+    if (createPost.isSuccess) {
+      console.log("mutate success > ", createPost.data);
+    }
+  }, [createPost]);
+
   /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   | Functions
   |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
