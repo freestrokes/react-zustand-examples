@@ -21,6 +21,13 @@ export const useFetchPosts = (param: any) => useQuery({
   // enabled: enabled ?? false,
 });
 
+export const useFetchPost = (id: string) => useQuery({
+	queryKey: postQueryKeys.getOne(),
+	queryFn: () => PostService.getPost(id),
+	select: (result) => result.data,
+	// enabled: enabled ?? false,
+});
+
 export const useMutatePost = (param: any) => useMutation({
 	mutationFn: () => PostService.createPost(param),
 });

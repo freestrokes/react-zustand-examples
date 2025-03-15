@@ -156,6 +156,11 @@ function App() {
     createPost.mutate(postsParam);
   };
 
+  const onClickClear = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    useCommonStore.persist.clearStorage();
+  };
+
   /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	| Mark Up
 	|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
@@ -171,8 +176,9 @@ function App() {
       <input type="number" onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInput(e)}></input>
       <button onClick={() => testIncreasePopulation()}>one up</button>
       <button onClick={() => testRemoveAllBears()}>remove all</button>
-      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickUpdate(e)}>update</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickUpdate(e)}>Update Post</button>
       <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickCreate(e)}>Add Post</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickClear(e)}>Clear Storage</button>
     </div>
   )
 
