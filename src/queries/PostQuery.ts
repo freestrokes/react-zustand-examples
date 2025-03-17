@@ -30,6 +30,25 @@ export const useFetchPost = (id: string) => useQuery({
 
 export const useMutatePost = (param: any) => useMutation({
 	mutationFn: () => PostService.createPost(param),
+	retry: 0,
+	onMutate: (variables) => {
+		// A mutation is about to happen!
+		console.log('onMutate', variables);
+		// Optionally return a context containing data to use when for example rolling back
+		return {id: 1};
+	},
+	onError: (error, variables, context) => {
+		// An error happened!
+		console.log(context);
+		// console.log(`rolling back optimistic update with id ${context.id}`)
+	},
+	// 뮤테이션이 성공한다면, 쿼리의 데이터를 invalidate해 관련된 쿼리가 리패치되도록 만든다.
+	onSuccess: (data, variables, context) => {
+		// queryClient.invalidateQueries(boardKeys.createWithParam());
+	},
+	onSettled: (data, error, variables, context) => {
+		// Error or success... doesn't matter!
+	},
 });
 
 // export const PostQuery = {
