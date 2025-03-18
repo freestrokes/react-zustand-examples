@@ -52,9 +52,22 @@ export const PostService = {
 	 * @param param
 	 */
 	createPost: async (param: any) => {
+		console.log('create post', param);
 		const {data} = await axiosInstance.post<Result<any>>(
 			`${API_URL}`,
 			param
+		);
+
+		return data;
+	},
+
+	/**
+	 * Delete Post
+	 * @param param
+	 */
+	deletePost: async (param: any) => {
+		const {data} = await axiosInstance.post<Result<any>>(
+			`${API_URL}/${param}`,
 		);
 
 		return data;
