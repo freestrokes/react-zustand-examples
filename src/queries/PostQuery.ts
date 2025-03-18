@@ -28,7 +28,7 @@ export const useFetchPost = (id: string) => useQuery({
 	// enabled: enabled ?? false,
 });
 
-export const useMutatePost = (param: any) => useMutation({
+export const useCreatePost = (param: any) => useMutation({
 	mutationFn: () => PostService.createPost(param),
 	retry: 0,
 	onMutate: (variables) => {
@@ -48,6 +48,21 @@ export const useMutatePost = (param: any) => useMutation({
 	},
 	onSettled: (data, error, variables, context) => {
 		// Error or success... doesn't matter!
+	},
+});
+
+export const useDeletePost = (param: any) => useMutation({
+	mutationFn: () => PostService.deletePost(param),
+	retry: 0,
+	onMutate: (variables) => {
+	},
+	onError: (error, variables, context) => {
+	},
+	onSuccess: (data, variables, context) => {
+		// resetDeleteBoardParamState();
+		// queryClient.invalidateQueries(boardKeys.delete());
+	},
+	onSettled: (data, error, variables, context) => {
 	},
 });
 
