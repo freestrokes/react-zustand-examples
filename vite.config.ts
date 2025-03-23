@@ -4,7 +4,8 @@ import {
 	loadEnv
 } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import tsconfigPaths from 'vite-tsconfig-paths';
+import path from 'path';
+// import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vite.dev/config/
 export default ({ mode }: ConfigEnv) => {
@@ -14,7 +15,10 @@ export default ({ mode }: ConfigEnv) => {
 	const env = loadEnv(mode, process.cwd(), '');
 
 	return defineConfig({
-		plugins: [react(), tsconfigPaths()],
+		plugins: [
+			react(),
+			// tsconfigPaths()
+		],
     // Vite 설정
     define: {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
@@ -69,6 +73,11 @@ export default ({ mode }: ConfigEnv) => {
 				//   rewriteWsOrigin: true,
 				// }
 			}
+		},
+		resolve: {
+			alias: [
+				{ find: '@', replacement: path.resolve(__dirname, './src') }
+			]
 		}
 	})
 }
