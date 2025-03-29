@@ -51,8 +51,8 @@ export const useCreatePost = (param: any) => useMutation({
 	},
 });
 
-export const useDeletePost = (param: any) => useMutation({
-	mutationFn: () => PostService.deletePost(param),
+export const useDeletePost = () => useMutation({
+	mutationFn: (param: any) => PostService.deletePost(param),
 	retry: 0,
 	onMutate: (variables) => {
 	},

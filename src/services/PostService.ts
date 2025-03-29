@@ -66,7 +66,7 @@ export const PostService = {
 	 * @param param
 	 */
 	deletePost: async (param: any) => {
-		const {data} = await axiosInstance.post<Result<any>>(
+		const {data} = await axiosInstance.delete<Result<any>>(
 			`${API_URL}/${param}`,
 		);
 

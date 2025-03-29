@@ -9,7 +9,7 @@ import {
 } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 // import { PostService } from '@/services/PostService.ts';
-import { useFetchPosts, useMutatePost } from '@/queries/PostQuery';
+import { useFetchPosts, useCreatePost, useDeletePost } from '@/queries/PostQuery';
 import { useImmer } from 'use-immer';
 import {
   // getTestState,
@@ -76,7 +76,8 @@ function App() {
   |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
   const { data }: UseQueryResult = useFetchPosts(postsParam);
-  const createPost: UseMutationResult = useMutatePost();
+  const createPost: UseMutationResult = useCreatePost();
+  const deletePost: UseMutationResult = useDeletePost();
 
   // const useSignup = (mutationOptions?: UseMutationCustomOptions) => {
   //   return useMutation({
@@ -129,7 +130,7 @@ function App() {
     setUpdateParam(parseInt(e.target.value));
   };
 
-  const onClickUpdate = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickUpdateStorage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     testUpdateBears(updateParam);
 
@@ -151,14 +152,19 @@ function App() {
     console.log('App >>> onClickUpdate >>> accessToken', accessToken);
   };
 
+  const onClickClearStorage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    useCommonStore.persist.clearStorage();
+  };
+
   const onClickCreate = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     createPost.mutate(postsParam);
   };
 
-  const onClickClear = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    useCommonStore.persist.clearStorage();
+    deletePost.mutate(101);
   };
 
   /*-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -176,9 +182,10 @@ function App() {
       <input type="number" onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChangeInput(e)}></input>
       <button onClick={() => testIncreasePopulation()}>one up</button>
       <button onClick={() => testRemoveAllBears()}>remove all</button>
-      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickUpdate(e)}>Update Post</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickUpdateStorage(e)}>Update Storage</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickClearStorage(e)}>Clear Storage</button>
       <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickCreate(e)}>Add Post</button>
-      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickClear(e)}>Clear Storage</button>
+      <button onClick={(e: React.MouseEvent<HTMLButtonElement>) => onClickDelete(e)}>Delete Post</button>
     </div>
   )
 
