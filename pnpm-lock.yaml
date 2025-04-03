@@ -12,11 +12,11 @@ importers:
         specifier: ^5.66.11
         version: 5.69.0(react@19.0.0)
       '@types/node':
-        specifier: ^22.13.8
-        version: 22.13.12
+        specifier: ^22.13.17
+        version: 22.13.17
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.2
-        version: 3.8.1(vite@6.2.2(@types/node@22.13.12))
+        version: 3.8.1(vite@6.2.2(@types/node@22.13.17))
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.21(postcss@8.5.3)
@@ -46,7 +46,7 @@ importers:
         version: 0.11.0(immer@10.1.1)(react@19.0.0)
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.6.3)(vite@6.2.2(@types/node@22.13.12))
+        version: 5.1.4(typescript@5.6.3)(vite@6.2.2(@types/node@22.13.17))
       zustand:
         specifier: ^5.0.3
         version: 5.0.3(@types/react@19.0.12)(immer@10.1.1)(react@19.0.0)
@@ -62,7 +62,7 @@ importers:
         version: 19.0.4(@types/react@19.0.12)
       '@vitejs/plugin-react':
         specifier: ^4.3.4
-        version: 4.3.4(vite@6.2.2(@types/node@22.13.12))
+        version: 4.3.4(vite@6.2.2(@types/node@22.13.17))
       esbuild:
         specifier: ^0.25.1
         version: 0.25.1
@@ -86,7 +86,7 @@ importers:
         version: 8.27.0(eslint@9.23.0)(typescript@5.6.3)
       vite:
         specifier: ^6.0.11
-        version: 6.2.2(@types/node@22.13.12)
+        version: 6.2.2(@types/node@22.13.17)
 
 packages:
 
@@ -615,8 +615,8 @@ packages:
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
-  '@types/node@22.13.12':
-    resolution: {integrity: sha512-ixiWrCSRi33uqBMRuICcKECW7rtgY43TbsHDpM2XK7lXispd48opW+0IXrBVxv9NMhaz/Ue9kyj6r3NTVyXm8A==}
+  '@types/node@22.13.17':
+    resolution: {integrity: sha512-nAJuQXoyPj04uLgu+obZcSmsfOenUg6DxPKogeUy6yNCFwWaj5sBF8/G/pNo8EtBJjAfSVgfIlugR/BCOleO+g==}
 
   '@types/react-dom@19.0.4':
     resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
@@ -1803,7 +1803,7 @@ snapshots:
 
   '@types/json-schema@7.0.15': {}
 
-  '@types/node@22.13.12':
+  '@types/node@22.13.17':
     dependencies:
       undici-types: 6.20.0
 
@@ -1892,21 +1892,21 @@ snapshots:
       '@typescript-eslint/types': 8.27.0
       eslint-visitor-keys: 4.2.0
 
-  '@vitejs/plugin-react-swc@3.8.1(vite@6.2.2(@types/node@22.13.12))':
+  '@vitejs/plugin-react-swc@3.8.1(vite@6.2.2(@types/node@22.13.17))':
     dependencies:
       '@swc/core': 1.11.13
-      vite: 6.2.2(@types/node@22.13.12)
+      vite: 6.2.2(@types/node@22.13.17)
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@vitejs/plugin-react@4.3.4(vite@6.2.2(@types/node@22.13.12))':
+  '@vitejs/plugin-react@4.3.4(vite@6.2.2(@types/node@22.13.17))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 6.2.2(@types/node@22.13.12)
+      vite: 6.2.2(@types/node@22.13.17)
     transitivePeerDependencies:
       - supports-color
 
@@ -2508,24 +2508,24 @@ snapshots:
     dependencies:
       inherits: 2.0.3
 
-  vite-tsconfig-paths@5.1.4(typescript@5.6.3)(vite@6.2.2(@types/node@22.13.12)):
+  vite-tsconfig-paths@5.1.4(typescript@5.6.3)(vite@6.2.2(@types/node@22.13.17)):
     dependencies:
       debug: 4.4.0
       globrex: 0.1.2
       tsconfck: 3.1.5(typescript@5.6.3)
     optionalDependencies:
-      vite: 6.2.2(@types/node@22.13.12)
+      vite: 6.2.2(@types/node@22.13.17)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@6.2.2(@types/node@22.13.12):
+  vite@6.2.2(@types/node@22.13.17):
     dependencies:
       esbuild: 0.25.1
       postcss: 8.5.3
       rollup: 4.37.0
     optionalDependencies:
-      '@types/node': 22.13.12
+      '@types/node': 22.13.17
       fsevents: 2.3.3
 
   which@2.0.2:
