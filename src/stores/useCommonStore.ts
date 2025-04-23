@@ -2,7 +2,7 @@ import { create, ExtractState, StoreApi } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { CommonState } from '@/states/CommonState';
 
-const useCommonStore = create<CommonState>()(
+export const useCommonStore = create<CommonState>()(
 	persist(
 		(set, get) => ({
 			lang: 'ko',
@@ -43,4 +43,5 @@ export const useCommonUpdateLang = () => useCommonStore((store: ExtractState<Sto
 export const useCommonUpdateSpinner = () => useCommonStore((store: ExtractState<StoreApi<CommonState>>) => store.updateSpinner);
 export const useCommonUpdateTitle = () => useCommonStore((store: ExtractState<StoreApi<CommonState>>) => store.updateTitle);
 export const useCommonUpdateAccessToken = () => useCommonStore((store: ExtractState<StoreApi<CommonState>>) => store.updateAccessToken);
-export default useCommonStore;
+
+// export default useCommonStore;
