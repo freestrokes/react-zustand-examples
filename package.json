@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.74.4",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.3",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
