@@ -2,8 +2,8 @@ import { create, ExtractState, StoreApi } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { CommonState } from '@/states/CommonState';
 
-export const useCommonStore = create<CommonState>()(
-	persist(
+export const useCommonStore = create(
+	persist<CommonState>(
 		(set, get) => ({
 			lang: 'ko',
 			spinner: false,
@@ -11,7 +11,7 @@ export const useCommonStore = create<CommonState>()(
 			accessToken: '',
 			updateLang: (lang: string) =>
 				set((state: CommonState) => ({
-					lang: lang
+					lang: state.lang !== lang ? lang : state.lang
 				})),
 			updateSpinner: (isActive: boolean) =>
 				set((state: CommonState) => ({
