@@ -25,7 +25,7 @@ export default ({ mode }: ConfigEnv) => {
     },
 		server: {
 			port: 5173,
-			proxy: {
+			proxy: env.VITE_ENV === 'localhost' ? {
 				// 문자열만:
 				// http://localhost:5173/foo
 				//   -> http://localhost:4567/foo
@@ -38,10 +38,8 @@ export default ({ mode }: ConfigEnv) => {
 					target: `${env.VITE_API_URL}`,
 					changeOrigin: true,
 					rewrite: (path) => path.replace(/^\/api/, ''),
-					// SSL 인증서 검증 무시
-					secure: false,
-					// WebSocket 프로토콜 사용
-					ws: true,
+					secure: false,  // SSL 인증서 검증 무시
+					ws: true, // WebSocket 프로토콜 사용
 				},
 
 				// 정규식(RegExp)과 함께:
@@ -72,7 +70,7 @@ export default ({ mode }: ConfigEnv) => {
 				//   ws: true,
 				//   rewriteWsOrigin: true,
 				// }
-			}
+			} : undefined
 		},
 		resolve: {
 			alias: [
